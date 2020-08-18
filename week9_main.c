@@ -16,7 +16,7 @@ int main()
     for(i=0;i<num;i++)
     {
         min=numset[i];
-        for(j=i;j<num;j++)
+        for(j=i+1;j<num;j++)
         {
             if(min>numset[j])
             {
@@ -26,14 +26,14 @@ int main()
         }
         temp=numset[i];
         numset[i]=min;
-        numset[j]=temp;
+        numset[index]=temp;
     }
     for(i=0;i<num;i++) printf("%f ",numset[i]);
     // Finding the median
     if(num%2)
-        med=numset[(num+1)/2];
+        med=numset[(num-1)/2];
     else
-        med=(numset[num/2]+numset[num/2+1])/2;
+        med=(numset[num/2]+numset[num/2-1])/2;
 
     printf("Mean = %f\nMedian = %f",avg,med);
     //Finding the mode
