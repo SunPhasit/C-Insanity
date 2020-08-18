@@ -3,17 +3,15 @@
 
 int main()
 {
-    int c,i,j,in,t;
+    int c,i,j,in,t,min,minm,mind;
     printf("Input the amount of dates needed sorting : ");
     scanf("%d\n",&c);
-    char date[c][20],month_text[c][10];
+    char date[c][22],month_text[c][12];
     int day[c],month[c],year[c];
-    /*printf("Please input the date(Month dd, yyyy)\n");*/
     for(i=0;i<c;i++)
     {
-        /*printf("Date %d of %d : ",i+1,c);*/
-        fgets(date[i],18,stdin);
-        sscanf(date[i],"%s %d, %d",&month_text[i],&day[i],&year[i]);
+        fgets(date[i],22,stdin);
+        sscanf(date[i],"\n%s %d, %d\n",&month_text[i],&day[i],&year[i]);
         if (!strcmp(month_text[i],"January")) month[i]=1;
         else if (!strcmp(month_text[i],"February")) month[i]=2;
         else if (!strcmp(month_text[i],"March")) month[i]=3;
@@ -31,23 +29,37 @@ int main()
             printf("Invalid month - Please check your spelling");
             exit(0);
         }
+        //printf("%d %d %d\n",day[i],month[i],year[i]);
     }
+    printf("-----------------------------------------------------\n");
     for(i=0;i<c;i++)
     {
-        for(j=i;j<c;j++)
+        in=i;
+        min=year[i];
+        minm=month[i];
+        mind=day[i];
+        for(j=i+1;j<c;j++)
         {
-            if(year[i]>year[j])
-                in=j;
-            else if(year[i]==year[j])
+            if(min>year[j])
             {
-                if(month[i]>month[j])
-                    in=j;
-                else if(month[i]==month[j])
+                in=j;
+                min=year[j];
+            }
+            else if(min==year[j])
+            {
+                if(minm>month[j])
                 {
-                    if(day[i]>day[j])
                     in=j;
+                    minm=month[j];
+                }
+                else if(minm==month[j])
+                {
+                    if(mind>day[j])
+                    in=j;
+                    mind=day[j];
                 }
             }
+            //printf("%d: (%d) %d %d %d\n",i,in,min,minm,mind);
         }
         t=year[i];
         year[i]=year[in];
@@ -58,19 +70,20 @@ int main()
         t=day[i];
         day[i]=day[in];
         day[in]=t;
+        //printf("%d %d %d",day[i], month[i], year[i]);
         if (month[i]==1) strcpy(month_text[i],"January");
-        else if (month[i]==1) strcpy(month_text[i],"February");
-        else if (month[i]==1) strcpy(month_text[i],"March");
-        else if (month[i]==1) strcpy(month_text[i],"April");
-        else if (month[i]==1) strcpy(month_text[i],"May");
-        else if (month[i]==1) strcpy(month_text[i],"June");
-        else if (month[i]==1) strcpy(month_text[i],"July");
-        else if (month[i]==1) strcpy(month_text[i],"August");
-        else if (month[i]==1) strcpy(month_text[i],"September");
-        else if (month[i]==1) strcpy(month_text[i],"October");
-        else if (month[i]==1) strcpy(month_text[i],"November");
-        else if (month[i]==1) strcpy(month_text[i],"December");
-        printf("%s %d, %d",month_text[i],day[i],year[i]);
+        else if (month[i]==2) strcpy(month_text[i],"February");
+        else if (month[i]==3) strcpy(month_text[i],"March");
+        else if (month[i]==4) strcpy(month_text[i],"April");
+        else if (month[i]==5) strcpy(month_text[i],"May");
+        else if (month[i]==6) strcpy(month_text[i],"June");
+        else if (month[i]==7) strcpy(month_text[i],"July");
+        else if (month[i]==8) strcpy(month_text[i],"August");
+        else if (month[i]==9) strcpy(month_text[i],"September");
+        else if (month[i]==10) strcpy(month_text[i],"October");
+        else if (month[i]==11) strcpy(month_text[i],"November");
+        else if (month[i]==12) strcpy(month_text[i],"December");
+        printf("%s %d, %d\n",month_text[i],day[i],year[i]);
     }
 
     return 0;
