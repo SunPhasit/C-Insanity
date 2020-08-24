@@ -16,6 +16,7 @@ int main()
     for(i=0;i<num;i++)
     {
         min=numset[i];
+        index=i;
         for(j=i+1;j<num;j++)
         {
             if(min>numset[j])
@@ -28,41 +29,37 @@ int main()
         numset[i]=min;
         numset[index]=temp;
     }
-    for(i=0;i<num;i++) printf("%f ",numset[i]);
     // Finding the median
     if(num%2)
         med=numset[(num-1)/2];
     else
         med=(numset[num/2]+numset[num/2-1])/2;
 
-    printf("Mean = %f\nMedian = %f",avg,med);
-    //Finding the mode
-    int modecount[num];
-    min=0; // will be treated as max for this
-    temp=1; // will be treated as count
-    for(i=0;i<num;i++)
+    printf("Mean = %f\nMedian = %f\n",avg,med);
+    //Finding the mode 'temp' used to count the occurrences, 'min' used to find the max of the mode
+    int dupC[num];
+    for (i=0;i<num;i++)
     {
-        modecount[i]=1;
-        while(numset[i]==numset[i+modecount[i]]) modecount[i]++;
-    }
-    min=modecount[0];
-    i=0;
-    for(i=1;i<num;i++)
-    {
-        if(min<modecount[i])
+        for(j=i+1;j<num;j++)
         {
-            min=modecount[i];
-            index=i;
+            if(numset[j]==numset[i]) dupC[i]++;
         }
-        if(min=modecount[i])
+    }
+    min=dupC[0];
+    temp=0;
+    for (i=1;i<num;i++)
+    {
+        if(min<dupC[i]) min=dupC[i];
+    }
+    for (i=0;i<num;i++)
+    {
+        if(min==dupC[i])
         {
             temp++;
-            avg=i; //avg used to store the location of the second mode
+            mode=numset[i];
         }
     }
-    /*
-    if(temp=1) printf("The mode is %f");
-    else if(temp=2) printf("The mode is %f and %f");
-    else printf("There is no mode");*/
+    if(!(temp-1)) printf("Mode = %f",mode);
+    else printf("There is no mode");
     return 0;
 }
