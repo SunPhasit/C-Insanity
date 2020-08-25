@@ -60,8 +60,6 @@ int main()
             mode=numset[i];
         }
     }
-    for(i=0;i<num;i++) printf("%d ",dupC[i]);
-    printf(" %f\n",temp);
     if(!(temp-1)) printf("Mode = %f",mode);
     else printf("There is no mode");
     return 0;
