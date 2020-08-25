@@ -40,6 +40,7 @@ int main()
     int dupC[num];
     for (i=0;i<num;i++)
     {
+        dupC[i]=0;
         for(j=i+1;j<num;j++)
         {
             if(numset[j]==numset[i]) dupC[i]++;
@@ -59,6 +60,8 @@ int main()
             mode=numset[i];
         }
     }
+    for(i=0;i<num;i++) printf("%d ",dupC[i]);
+    printf(" %f\n",temp);
     if(!(temp-1)) printf("Mode = %f",mode);
     else printf("There is no mode");
     return 0;
