@@ -1,2 +1,2 @@
 # C-Insanity
-Just me doing school projects
+Just me getting murdered by school projects
