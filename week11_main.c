@@ -44,18 +44,24 @@ int main()
             {
                 in=j;
                 min=year[j];
+                minm=month[j];
+                mind=day[j];
             }
             else if(min==year[j])
             {
                 if(minm>month[j])
                 {
                     in=j;
+                    min=year[j];
                     minm=month[j];
+                    mind=day[j];
                 }
                 else if(minm==month[j])
                 {
                     if(mind>day[j])
                     in=j;
+                    min=year[j];
+                    minm=month[j];
                     mind=day[j];
                 }
             }
