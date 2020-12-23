@@ -18,26 +18,9 @@ int findIntersection(int count1, int *elements1, int count2, int *elements2, int
     return k;
 }
 
-int findUnion(int count1, int *elements1, int count2, int *elements2, int *un) //Broken
+int findUnion(int count1, int *elements1, int count2, int *elements2, int *un)
 {
     int i=0,j=0,k=0;
-    /*for(i=0;i<count1;i++)
-    {
-        for(j=0;j<count2;j++)
-        {
-            if(elements1[i]<elements2[j])
-            {
-                un[k]=elements1[i];
-                k++;
-                j=count2;
-            }
-            else if(elements1[i]>elements2[j])
-            {
-                un[k]=elements2[j];
-                k++;
-            }
-        }
-    }*/
     while((i<count1)&&(j<count2))
     {
         if(elements1[i]<elements2[j])
@@ -52,22 +35,25 @@ int findUnion(int count1, int *elements1, int count2, int *elements2, int *un) /
                 k++;
                 j++;
             }
-        else j++;
+        else
+        {
+            j++;
+        }
     }
     if (i<count1)
     {
         for(j=i;j<count1;j++)
         {
-            k++;
             un[k]=elements1[j];
+            k++;
         }
     }
     else if (j<count2)
     {
         for(i=j;i<count2;i++)
         {
-            k++;
             un[k]=elements2[i];
+            k++;
         }
     }
     return k;
